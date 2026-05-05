@@ -1,6 +1,5 @@
 const webpack = require('webpack');
-const firebase = require('firebase/app');
-require('firebase/firestore');
+const generateRoutes = require('./scripts/generate-routes');
 
 module.exports = {
   /*
@@ -29,51 +28,12 @@ module.exports = {
     ],
     script: [
      { src: 'https://unpkg.com/sweetalert/dist/sweetalert.min.js' },
-     { src: 'https://maps.googleapis.com/maps/api/js?key=AIzaSyCWDPCiH080dNCTYC-uprmLOn2mt2BMSUk&amp;sensor=true'},
+     { src: `https://maps.googleapis.com/maps/api/js?key=${process.env.GOOGLE_MAPS_API_KEY || 'YOUR_GOOGLE_MAPS_API_KEY'}&sensor=true` },
      { src: '//cdnjs.cloudflare.com/ajax/libs/cookieconsent2/3.0.3/cookieconsent.min.js'},
     ]
   },
   generate: {
-    routes: function () {
-      const specialitiesUrls = [];
-      const examsUrls = [];
-      const steticsUrls = [];
-      const settings = { timestampsInSnapshots: true};
-
-      firebase.initializeApp({
-        apiKey: "AIzaSyBuJ_QvagsAni6C4pVWM5uAqtsac7knoGk",
-        authDomain: "clinalamo-3d38c.firebaseapp.com",
-        databaseURL: "https://clinalamo-3d38c.firebaseio.com",
-        projectId: "clinalamo-3d38c",
-        storageBucket: "clinalamo-3d38c.appspot.com",
-        messagingSenderId: "750845688635"
-      });
-      firebase.firestore().settings(settings);
-
-      /*routes especialidades & stetics*/
-      let specialities = firebase.firestore().collection("specialities").get().then((querySnapshot) => {
-          querySnapshot.docs.map(doc => {
-           const url =  doc.data().name.split('/').length > 1 ? doc.data().name.replace(/ /g,"").split('/').join("-ou-") : doc.data().name.split(" ").join("-");
-           const section =  doc.data().name !== 'Análises Clínicas' && ( doc.data().section === "Especialidades" || doc.data().section === 'Ambas');
-
-           specialitiesUrls.push( (section ? '/especialidades/' : '/estetica/') + url.toLowerCase());
-         });
-          return specialitiesUrls
-       });
-
-       /*routes exams*/
-       let exames = firebase.firestore().collection("exams_types").get().then((querySnapshot) => {
-           querySnapshot.docs.map(doc => {
-            const url =  doc.data().name.split('/').length > 1 ? doc.data().name.replace(/ /g,"").split('/').join("-ou-") : doc.data().name.split(" ").join("-");
-            examsUrls.push('/exames/' + url.toLowerCase());
-          });
-           return examsUrls
-        });
-
-       return Promise.all([specialities, exames]).then(values => {
-          return values.join().split(',');
-        });
-    }
+    routes: generateRoutes
   },
   transition: {
     name: 'page',
