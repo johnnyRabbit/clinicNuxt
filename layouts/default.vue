@@ -1,7 +1,7 @@
 <template>
   <div>
-      <header class="navbar navbar-inverse navbar-fixed-top" role="banner">
-          <div class="">
+      <header class="navbar navbar-inverse navbar-fixed-top modern-header" role="banner">
+          <div class="container">
               <div class="navbar-header">
                   <button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-collapse">
                       <span class="sr-only">Toggle navigation</span>
@@ -24,12 +24,14 @@
               </div>
           </div>
       </header><!--/header-->
-    <nuxt/>
+    <main class="modern-main">
+      <nuxt/>
+    </main>
     <div>
       <OnlineAppointments/>
     </div>
-    <div id="footer-wrapper">
-        <footer id="footer" class="">
+    <div id="footer-wrapper" class="modern-footer-wrapper">
+        <footer id="footer" class="modern-footer">
             <div class="container">
               <div class="schedule">
                 <div class="col-sm-6" style="margin-bottom: 15px">

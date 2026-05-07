@@ -1,6 +1,6 @@
 <template>
   <div>
-  <section id="main-slider">
+  <section id="main-slider" class="modern-hero">
       <div class="carousel slide" data-ride="carousel">
           <div class="carousel-inner">
               <div class="item active">
@@ -8,11 +8,11 @@
                       <div class="row">
                           <div class="col-sm-12">
                               <div class="carousel-content center centered">
-                                  <h2 class="boxed animation animated-item-1">Bem vindo à Clinalamo</h2>
+                                  <h2 class="boxed animation animated-item-1 hero-title">Bem vindo à Clinalamo</h2>
                                   <br>
-                                  <a class="btn btn-md animation" href="#about-us">Sobre Nós</a>
+                                  <a class="btn btn-md animation hero-btn" href="#about-us">Sobre Nós</a>
                                   <br>
-                                  <a class="btn btn-md animation" href="#" data-toggle="modal" data-target="#myModalHorizontal">Marcações Online</a>
+                                  <a class="btn btn-md animation hero-btn hero-btn-secondary" href="#" data-toggle="modal" data-target="#myModalHorizontal">Marcações Online</a>
                               </div>
                           </div>
                       </div>
@@ -42,7 +42,7 @@
           </div>
           <div class="row">
                 <div class="col-md-4 col-xs-12">
-                    <div class="tile-progress center tile-cyan">
+                    <div class="tile-progress center tile-cyan modern-card">
                         <div class="tile-header">
                             <h3 class="upperCase">Marcações Online</h3>
                         </div>
@@ -54,7 +54,7 @@
                     </div>
                 </div>
                 <div class="col-md-4 col-xs-12">
-                    <div class="tile-progress center tile-cyan">
+                    <div class="tile-progress center tile-cyan modern-card">
                         <div class="tile-header">
                             <h3 class="upperCase">Médicos</h3>
                         </div>
@@ -66,7 +66,7 @@
                     </div>
                 </div>
                 <div class="col-md-4 col-xs-12">
-                    <div class="tile-progress center tile-cyan center">
+                    <div class="tile-progress center tile-cyan center modern-card">
                         <div class="tile-header">
                             <h3 class="upperCase">Especialidades</h3>
                         </div>
